@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+/**
+ * lists all questions available in all workshops,
+ * with id for API to pass to bin/runner
+ */
+
+var sh = require("shelljs");
+
+var WORKSHOPS_PATH = process.env.NODE_ENV === "development" ? __dirname + "/../workshops/" : "/srv/";
+
+var workshops = sh.ls(WORKSHOPS_PATH);
+
+var all = workshops.map(function(workshop) {
+  var questions = sh.ls(WORKSHOPS_PATH + workshop + "/exercises");
+
+  return questions.map(function(q) {
+    return {
+      id: workshop + "__" + q,
+      workshop: workshop,
+      exercise: q,
+    }
+  });
+});
+
+var questions = [].concat.apply([], all);
+
+console.log(questions);

@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+
+/**
+ * runs a given workshopper - pass answer to STDIN
+ */
+
+var WORKSHOPS_PATH = process.env.NODE_ENV === "development" ? __dirname + "/../workshops/" : "/srv/";
+
+var id = parseQuestionId(process.env.QUESTION_ID);
+if(!id) {
+  usage();
+}
+
+var sh = require("shelljs");
+var fs = require("fs");
+
+
+var input = fs.readFileSync("/dev/stdin", "utf-8");
+
+var WORKSHOP_DIR = WORKSHOPS_PATH + id.workshopper  + "/exercises/" + id.exercise 
+var exercise = require(WORKSHOP_DIR + "/exercise.js");
+
+var NEVER_USED = "why does this stupid post-constructor constructor take a workshopper that's never used?";
+exercise.init(
+  NEVER_USED,
+  "blah",
+  id.exercise,
+  WORKSHOP_DIR,
+  255
+);
+
+input.to("/tmp/answer.js");
+
+
+exercise.verify(["/tmp/answer.js"], function(err, passed) {
+  if(err) {
+    process.exit(2);
+  } else {
+    process.exit(passed ? 0 : 1);
+  }
+});
+
+
+function usage() {
+  console.log("please set QUESTION_ID and pipe to stdin. QUESTION_ID = workshopperName + '___' + exerciseName");
+}
+
+function run(exercise) {
+  // individual validation events
+  exercise.on('pass', onpass)
+  exercise.on('fail', onfail)
+
+  function done (err, pass) {
+    var errback
+
+    if (err) {
+      // if there was an error then we need to do this after cleanup
+      errback = function () {
+        error('Could not ' + mode + ': ' + (err.message || err))
+      }
+    }
+
+    if (mode == 'run' || err)
+      return this.end(mode, true, exercise, errback) // clean up
+
+    if (!pass)
+      return this.exerciseFail(mode, exercise)
+
+    this.exercisePass(mode, exercise)
+  }
+
+  exercise[mode](args, done.bind(this))
+}
+
+function parseQuestionId(id) {
+  var split = id.split("__");
+  if(split.length !== 2) return;
+
+  return {
+    workshopper: split[0],
+    exercise: split[1],
+  }
+}

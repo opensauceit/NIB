@@ -1,0 +1,15 @@
+{
+  "name": "nib-node-schools",
+  "version": "0.0.1",
+  "description": "all the nodeschools as a docker container",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "shelljs": "~0.3.0",
+    "mustache": "~0.8.2"
+  }
+}
