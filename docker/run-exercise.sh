@@ -1,8 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
-WORKSHOP="${WORKSHOP}"
+if [ -z "${WORKSHOP}" ]; then
+  echo "Please specify a workshop!"
+  exit 1
+fi
 
-learnyounode select ${WORKSHOP}
+learnyounode select ${WORKSHOP} > /dev/null
 
 read INPUT
 
