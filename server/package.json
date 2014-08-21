@@ -1,0 +1,29 @@
+{
+  "name": "nib",
+  "version": "0.0.0",
+  "description": "NodeSchool in a Box",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"not done yet :S\"",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:opensauceit/NIB.git"
+  },
+  "keywords": [
+    "nodeschool",
+    "node",
+    "learning"
+  ],
+  "author": "opensauce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/opensauceit/NIB/issues"
+  },
+  "homepage": "https://github.com/opensauceit/NIB",
+  "dependencies": {
+    "body-parser": "~1.6.5",
+    "express": "~4.8.5"
+  }
+}
