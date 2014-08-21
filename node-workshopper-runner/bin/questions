@@ -12,13 +12,15 @@ var WORKSHOPS_PATH = process.env.NODE_ENV === "development" ? __dirname + "/../w
 var workshops = sh.ls(WORKSHOPS_PATH);
 
 var all = workshops.map(function(workshop) {
-  var questions = sh.ls(WORKSHOPS_PATH + workshop + "/exercises");
+  var exercisesPath = WORKSHOPS_PATH + workshop + "/exercises";
+  var questions = sh.ls(exercisesPath);
 
   return questions.map(function(q) {
     return {
       id: workshop + "__" + q,
       workshop: workshop,
       exercise: q,
+      problem: sh.cat(exercisesPath + "/" + q  + "/problem.md")
     }
   });
 });
