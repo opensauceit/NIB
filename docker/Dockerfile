@@ -1,8 +1,15 @@
 FROM node:latest
 
-RUN npm install -g learnyounode
+RUN npm install -g learnyounode && \
+    mkdir /.config && \
+    chown -R nobody /.config
 
-ADD run-exercise.sh /root/run-exercise.sh
-RUN chmod 700 /root/run-exercise.sh
+WORKDIR /var/tmp
 
-CMD [ "/root/run-exercise.sh" ]
+ADD run-exercise.sh /var/tmp/run-exercise.sh
+
+RUN chmod 755 /var/tmp/run-exercise.sh
+
+USER nobody
+
+CMD [ "/var/tmp/run-exercise.sh" ]
