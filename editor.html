@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,900' rel='stylesheet' type='text/css'>
+  <style>
+  html { 
+  background-color: #141414;
+  font-family: 'Raleway', sans-serif;
+  }
+  #container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  }
+  #topbar {
+  position: relative;
+  padding-top: 0;
+  margin-top: 0;
+  color: white;
+  background-color: #404040;
+  height: 100px;
+  }
+  #topbar ul {
+  margin: 0px;
+  }
+  #topmenu ul li {
+  top: 30px;
+  position: relative;
+  display: inline;
+  list-style-type: none;
+  margin-left: 30px;
+  }
+  #toprun {
+  position: relative;
+  top: 10px;
+  float: right;
+  margin-right: 20%;
+  border: 1px solid white;
+  background-color: #33A;
+  padding: 10px;
+  }
+  #editor { 
+  position: relative;
+  float: right;
+  width: 50%;
+  height: 1000px;
+  }
+
+  #sidebar {
+  float: left;
+  /*position: relative;*/
+  width: 50% ;
+  height: 100%;
+  color: white;
+  }
+  #sidebar-within {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+<div id="container">
+  <div id="topbar">
+    <div id="topmenu">
+      <ul>
+        <li>Link</li>
+        <li>Link</li>
+        <li>Link</li>
+      </ul>
+      <div id="toprun">
+      <span>RUN</span>
+      </div>
+    </div>
+      
+  </div>
+  <div id="sidebar">
+    <div id="sidebar-within">
+      <h2>Welcome to Nodeschool in a Box</h2>
+      <div>Description goes here, but basically it was all because no one bought the milk, the cookies then disappeared and Santa Claus never showed up, this really saddened all of us and we decided to buy a  cat and we called him MILKO!</div>
+    </div>
+  </div>
+  <div id="editor">
+  function nodeschool(items) {
+      var i;
+      for (i = 0; i &lt; items.length; i++) {
+          alert("It works in the browser" + items[i]);
+      }
+  }
+  </div>
+</div>
+<script src="lib/ace/src-min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/twilight");
+    editor.getSession().setMode("ace/mode/javascript");
+</script>
+
+
+</body>
+</html>
