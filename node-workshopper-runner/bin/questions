@@ -7,7 +7,7 @@
 
 var sh = require("shelljs");
 
-var WORKSHOPS_PATH = process.env.NODE_ENV === "development" ? __dirname + "/../workshops/" : "/srv/";
+var WORKSHOPS_PATH = __dirname + "/../workshops/";
 
 var workshops = sh.ls(WORKSHOPS_PATH);
 

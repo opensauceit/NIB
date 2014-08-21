@@ -4,7 +4,7 @@
  * runs a given workshopper - pass answer to STDIN
  */
 
-var WORKSHOPS_PATH = process.env.NODE_ENV === "development" ? __dirname + "/../workshops/" : "/srv/";
+var WORKSHOPS_PATH = __dirname + "/../workshops/";
 
 var id = parseQuestionId(process.env.QUESTION_ID);
 if(!id) {
